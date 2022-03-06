@@ -43,6 +43,7 @@ namespace LaboratorioNo4
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -103,7 +104,8 @@ namespace LaboratorioNo4
             // 
             this.historialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.másVisitadasToolStripMenuItem,
-            this.másRecientesToolStripMenuItem});
+            this.másRecientesToolStripMenuItem,
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem});
             this.historialToolStripMenuItem.Name = "historialToolStripMenuItem";
             this.historialToolStripMenuItem.Size = new System.Drawing.Size(93, 29);
             this.historialToolStripMenuItem.Text = "Historial";
@@ -111,15 +113,16 @@ namespace LaboratorioNo4
             // másVisitadasToolStripMenuItem
             // 
             this.másVisitadasToolStripMenuItem.Name = "másVisitadasToolStripMenuItem";
-            this.másVisitadasToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
+            this.másVisitadasToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
             this.másVisitadasToolStripMenuItem.Text = "Más Visitadas";
             this.másVisitadasToolStripMenuItem.Click += new System.EventHandler(this.másVisitadasToolStripMenuItem_Click);
             // 
             // másRecientesToolStripMenuItem
             // 
             this.másRecientesToolStripMenuItem.Name = "másRecientesToolStripMenuItem";
-            this.másRecientesToolStripMenuItem.Size = new System.Drawing.Size(225, 34);
+            this.másRecientesToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
             this.másRecientesToolStripMenuItem.Text = "Más Recientes";
+            this.másRecientesToolStripMenuItem.Click += new System.EventHandler(this.másRecientesToolStripMenuItem_Click);
             // 
             // cmbBuscar
             // 
@@ -164,6 +167,13 @@ namespace LaboratorioNo4
             this.dataGridView1.Size = new System.Drawing.Size(240, 275);
             this.dataGridView1.TabIndex = 5;
             // 
+            // eliminarSeleccionadoEnComboboxToolStripMenuItem
+            // 
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Name = "eliminarSeleccionadoEnComboboxToolStripMenuItem";
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Text = "Eliminar Seleccionado en combobox";
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Click += new System.EventHandler(this.eliminarSeleccionadoEnComboboxToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -203,6 +213,7 @@ namespace LaboratorioNo4
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem eliminarSeleccionadoEnComboboxToolStripMenuItem;
     }
 }
 

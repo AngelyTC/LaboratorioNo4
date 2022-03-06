@@ -9,7 +9,7 @@ namespace LaboratorioNo4
     class url
     {
         public int numero { get; set; }
-        public string texto { get; set; }
+        public string texto1 { get; set; }
         public DateTime fecha { get; set; }
 
     }

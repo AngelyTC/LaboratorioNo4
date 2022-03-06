@@ -13,8 +13,10 @@ namespace LaboratorioNo4
 {
     public partial class Form1 : Form
     {
-        int veces ;
+        int veces;
         List<url> datos = new List<url>();
+        url dato = new url();
+        //veces = 0;
         public Form1()
         {
             InitializeComponent();
@@ -45,20 +47,23 @@ namespace LaboratorioNo4
         private void btnIr_Click(object sender, EventArgs e)
         {
             String uri = cmbBuscar.Text;
-         
+
             //Angely Esmeralda Thomas Cortéz -  202108047 - Ingeniería en Sistemas 
             //Tercer Semestre Universidad Mesoamericana, Programación
 
             //busca si el texto ya existe dentro de datos
-            int pos = datos.FindIndex(n => n.texto == uri);           
+
+
+            int pos = datos.FindIndex(n => n.texto1 == uri);
             //si no existe lo creamos y lo agregamos a la lista
             if (pos == -1)
             {
+
+                url dato = new url();
                 veces = 0;
-                url dato = new url();      
-                veces++;
                 textBox1.Text = veces.ToString();
-                dato.texto = cmbBuscar.Text;              
+                dato.texto1 = cmbBuscar.Text;
+                dato.fecha = DateTime.Now;
                 //condicion para url
                 if (uri.Contains("."))
                 {
@@ -86,9 +91,10 @@ namespace LaboratorioNo4
             }
             else
             {
+
                 veces = datos[pos].numero++;
                 textBox1.Text = veces.ToString();
-               
+
                 //condicion para url
                 if (uri.Contains("."))
                 {
@@ -146,35 +152,70 @@ namespace LaboratorioNo4
 
         private void másVisitadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (url item in datos)
-            {
-                datos = datos.OrderBy(n => n.numero).ToList();
-                cmbBuscar.Items.Add(datos.ToList());
-                Guardar2A(@"C:\ArchivoLab3.txt", datos.ToString());
-                Mostrar();
-            }
-            
+            Guardar2A(@"C:\ArchivoLab3.txt");
         }
 
 
-        private void Guardar2A(string nombreArchivo, string datos)
+        private void Guardar2A(string nombreArchivo)
         {
             FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
 
             StreamWriter writer = new StreamWriter(stream);
-
-            writer.WriteLine(datos.ToString());
+            foreach (var dato in datos)
+            {
+                datos = datos.OrderByDescending(n => n.numero).ToList();
+                writer.WriteLine(dato.texto1);
+            }
 
             writer.Close();
         }
 
-        private void Mostrar()
+        private void Guardar3A(string nombreArchivo)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.Refresh();
+            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
 
-            dataGridView1.DataSource = datos;
-            dataGridView1.Refresh();
+            StreamWriter writer = new StreamWriter(stream);
+            foreach (var dato in datos)
+            {
+                datos = datos.OrderByDescending(m => m.fecha).ToList();
+                writer.WriteLine(dato.texto1);
+            }
+
+            writer.Close();
+        }
+
+
+        private void másRecientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Guardar3A(@"C:\ArchivoLab3.txt");
+        }
+
+        private void eliminarSeleccionadoEnComboboxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Eliminar1(@"C:\ArchivoLab3.txt");
+        }
+
+        private void Eliminar1(string nombreArchivo)
+        {
+            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
+
+            StreamWriter writer = new StreamWriter(stream);
+            if (cmbBuscar.Text == dato.texto1)
+            {
+                foreach (var dato in datos)
+                {
+                    if (cmbBuscar.Text == dato.texto1)
+                    {
+                        dato.texto1 = "";
+                        writer.WriteLine(dato.texto1);
+                    }
+                }
+
+                writer.Close();
+            }
         }
     }
 }
+
+    
+

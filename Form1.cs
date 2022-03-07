@@ -197,7 +197,7 @@ namespace LaboratorioNo4
 
         private void Eliminar1(string nombreArchivo)
         {
-            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
 
             StreamWriter writer = new StreamWriter(stream);
             if (cmbBuscar.Text == dato.texto1)
@@ -206,11 +206,10 @@ namespace LaboratorioNo4
                 {
                     if (cmbBuscar.Text == dato.texto1)
                     {
-                        dato.texto1 = "";
-                        writer.WriteLine(dato.texto1);
+                        dato.texto1 = "";                
                     }
+                    writer.WriteLine(dato.texto1);
                 }
-
                 writer.Close();
             }
         }

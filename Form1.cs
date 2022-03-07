@@ -15,7 +15,6 @@ namespace LaboratorioNo4
     {
         List<url> datos = new List<url>();
         url dato = new url();
-        //veces = 0;
         public Form1()
         {
             InitializeComponent();
@@ -125,7 +124,7 @@ namespace LaboratorioNo4
 
         private void másVisitadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Guardar2A(@"C:\ArchivoLab3.txt");
             datos = datos.OrderByDescending(n => n.numero).ToList();
             cargar();
         }
@@ -162,13 +161,14 @@ namespace LaboratorioNo4
 
         private void másRecientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Guardar3A(@"C:\ArchivoLab3.txt");
             datos = datos.OrderByDescending(m => m.fecha).ToList();
             cargar();
         }
 
         private void eliminarSeleccionadoEnComboboxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Eliminar1(@"C:\ArchivoLab3.txt");
+            Eliminar1();
         }
 
         private void cargar()
@@ -190,7 +190,7 @@ namespace LaboratorioNo4
 
             while (reader.Peek() >-1)
             {
-                url dato3= new url();
+                url dato3 = new url();
                 dato3.numero = Convert.ToInt32(reader.ReadLine());
                 dato3.texto1 = reader.ReadLine();
                 dato3.fecha = Convert.ToDateTime(reader.ReadLine());
@@ -198,10 +198,9 @@ namespace LaboratorioNo4
             }
             reader.Close();
         }
-        private void Eliminar1(string nombreArchivo)
+        private void Eliminar1()
         {
-            cmbBuscar.SelectedItem = "";
-          
+            cmbBuscar.SelectedIndex = -1;
         }
     }
 }

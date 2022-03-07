@@ -13,7 +13,6 @@ namespace LaboratorioNo4
 {
     public partial class Form1 : Form
     {
-        int veces;
         List<url> datos = new List<url>();
         url dato = new url();
         //veces = 0;
@@ -24,19 +23,8 @@ namespace LaboratorioNo4
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //cmbBuscar.SelectedIndex = 0;
-            webBrowser1.GoHome();
-            string nombreArchivo = @"C:\ArchivoLab3.txt";
-
-            FileStream stream = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(stream);
-
-            while (reader.Peek() > -1)
-            {
-                string texto = reader.ReadLine();
-                cmbBuscar.Items.Add(texto);
-            }
-            reader.Close();
+            leer(@"C:\ArchivoLab3.txt");
+            cargar();
         }
 
         private void navegarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,7 +40,25 @@ namespace LaboratorioNo4
             //Tercer Semestre Universidad Mesoamericana, Programación
 
             //busca si el texto ya existe dentro de datos
-
+            if (uri.Contains("."))
+            {
+                if (uri.Contains("https://"))
+                {
+                    //Buscar lo seleccionado en el combobox
+                    webBrowser1.Navigate(new Uri(cmbBuscar.Text));
+                }
+                else
+                {
+                    webBrowser1.Navigate(new Uri("https://" + cmbBuscar.Text));
+                    cmbBuscar.Text = "https://" + cmbBuscar.Text;
+                }
+            }
+            else
+            {
+                uri = "http://www.google.com/search?q=" + uri;
+                webBrowser1.Navigate(new Uri(uri));
+            }
+          
 
             int pos = datos.FindIndex(n => n.texto1 == uri);
             //si no existe lo creamos y lo agregamos a la lista
@@ -60,72 +66,39 @@ namespace LaboratorioNo4
             {
 
                 url dato = new url();
-                veces = 0;
-                textBox1.Text = veces.ToString();
-                dato.texto1 = cmbBuscar.Text;
+                dato.numero = 1;
+                dato.texto1 = uri;
                 dato.fecha = DateTime.Now;
                 //condicion para url
-                if (uri.Contains("."))
-                {
-                    if (uri.Contains("https://"))
-                    {
-                        //Buscar lo seleccionado en el combobox
-                        webBrowser1.Navigate(new Uri(cmbBuscar.Text));
-                    }
-                    else
-                    {
-                        webBrowser1.Navigate(new Uri("https://" + cmbBuscar.Text));
-                        cmbBuscar.Text = "https://" + cmbBuscar.Text;
-                    }
-                }
-                else
-                {
-                    uri = "http://www.google.com/search?q=" + uri;
-                    webBrowser1.Navigate(new Uri(uri));
-                }
-
-
+                
                 datos.Add(dato);
-                cmbBuscar.Items.Add(uri);
-                Guardar(@"C:\ArchivoLab3.txt", uri);
+               
             }
             else
             {
 
-                veces = datos[pos].numero++;
-                textBox1.Text = veces.ToString();
-
-                //condicion para url
-                if (uri.Contains("."))
-                {
-                    if (uri.Contains("https://"))
-                    {
-                        //Buscar lo seleccionado en el combobox
-                        webBrowser1.Navigate(new Uri(cmbBuscar.Text));
-                    }
-                    else
-                    {
-                        webBrowser1.Navigate(new Uri("https://" + cmbBuscar.Text));
-                        cmbBuscar.Text = "https://" + cmbBuscar.Text;
-                    }
-                }
-                else
-                {
-                    uri = "http://www.google.com/search?q=" + uri;
-                    webBrowser1.Navigate(new Uri(uri));
-                }
+                 datos[pos].numero++;
+                datos[pos].fecha = DateTime.Now;     
 
             }
+            cargar();
+            Guardar(@"C:\ArchivoLab3.txt");
 
         }
 
-        private void Guardar(string nombreArchivo, string texto)
+        private void Guardar(string nombreArchivo)
         {
-            FileStream stream = new FileStream(nombreArchivo, FileMode.Append, FileAccess.Write);
+            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
 
             StreamWriter writer = new StreamWriter(stream);
-
-            writer.WriteLine(texto);
+        
+            foreach (var u in datos)
+            {
+                writer.WriteLine(u.texto1);
+                writer.WriteLine(u.numero);
+                writer.WriteLine(u.fecha);
+            }
+           
 
             writer.Close();
         }
@@ -152,7 +125,9 @@ namespace LaboratorioNo4
 
         private void másVisitadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Guardar2A(@"C:\ArchivoLab3.txt");
+
+            datos = datos.OrderByDescending(n => n.numero).ToList();
+            cargar();
         }
 
 
@@ -187,7 +162,8 @@ namespace LaboratorioNo4
 
         private void másRecientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Guardar3A(@"C:\ArchivoLab3.txt");
+            datos = datos.OrderByDescending(m => m.fecha).ToList();
+            cargar();
         }
 
         private void eliminarSeleccionadoEnComboboxToolStripMenuItem_Click(object sender, EventArgs e)
@@ -195,21 +171,37 @@ namespace LaboratorioNo4
             Eliminar1(@"C:\ArchivoLab3.txt");
         }
 
+        private void cargar()
+        {
+            cmbBuscar.DataSource = null;
+            cmbBuscar.Refresh();
+
+            cmbBuscar.DisplayMember = "texto1";
+
+            cmbBuscar.DataSource = datos;
+            cmbBuscar.Refresh();
+        }
+
+        private void leer(string nombreArchivo)
+        {
+            FileStream stream = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read);
+
+            StreamReader reader = new StreamReader(stream);
+
+            while (reader.Peek() >-1)
+            {
+                url dato3= new url();
+                dato3.numero = Convert.ToInt32(reader.ReadLine());
+                dato3.texto1 = reader.ReadLine();
+                dato3.fecha = Convert.ToDateTime(reader.ReadLine());
+                datos.Add(dato3);
+            }
+            reader.Close();
+        }
         private void Eliminar1(string nombreArchivo)
         {
-            FileStream stream = new FileStream(nombreArchivo, FileMode.OpenOrCreate, FileAccess.Write);
-
-            StreamWriter writer = new StreamWriter(stream);
-            if (cmbBuscar.Text == dato.texto1)
-            {
-                foreach (var dato in datos)
-                {                    
-                      dato.texto1 = "";                
-                    
-                    writer.WriteLine(dato.texto1);
-                }
-                writer.Close();
-            }
+            cmbBuscar.SelectedItem = "";
+          
         }
     }
 }

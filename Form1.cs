@@ -81,7 +81,7 @@ namespace LaboratorioNo4
 
             }
             cargar();
-            Guardar(@"C:\ArchivoLab3.txt");
+            Guardar("ArchivoLinks.txt");
 
         }
 
@@ -124,7 +124,7 @@ namespace LaboratorioNo4
 
         private void másVisitadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Guardar2A(@"C:\ArchivoLab3.txt");
+            Guardar2A("ArchivoLinks.txt");
             datos = datos.OrderByDescending(n => n.numero).ToList();
             cargar();
         }
@@ -161,7 +161,7 @@ namespace LaboratorioNo4
 
         private void másRecientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Guardar3A(@"C:\ArchivoLab3.txt");
+            Guardar3A("ArchivoLinks.txt");
             datos = datos.OrderByDescending(m => m.fecha).ToList();
             cargar();
         }

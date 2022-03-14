@@ -38,14 +38,11 @@ namespace LaboratorioNo4
             this.historialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.másVisitadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.másRecientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbBuscar = new System.Windows.Forms.ComboBox();
             this.btnIr = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.eliminarSeleccionadoEnComboboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -57,7 +54,7 @@ namespace LaboratorioNo4
             this.historialToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1382, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1382, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -69,7 +66,7 @@ namespace LaboratorioNo4
             this.haciaAtrásToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.navegadorToolStripMenuItem.Name = "navegadorToolStripMenuItem";
-            this.navegadorToolStripMenuItem.Size = new System.Drawing.Size(116, 29);
+            this.navegadorToolStripMenuItem.Size = new System.Drawing.Size(116, 32);
             this.navegadorToolStripMenuItem.Text = "Navegador";
             // 
             // inicioToolStripMenuItem
@@ -107,7 +104,7 @@ namespace LaboratorioNo4
             this.másRecientesToolStripMenuItem,
             this.eliminarSeleccionadoEnComboboxToolStripMenuItem});
             this.historialToolStripMenuItem.Name = "historialToolStripMenuItem";
-            this.historialToolStripMenuItem.Size = new System.Drawing.Size(93, 29);
+            this.historialToolStripMenuItem.Size = new System.Drawing.Size(93, 32);
             this.historialToolStripMenuItem.Text = "Historial";
             // 
             // másVisitadasToolStripMenuItem
@@ -123,6 +120,13 @@ namespace LaboratorioNo4
             this.másRecientesToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
             this.másRecientesToolStripMenuItem.Text = "Más Recientes";
             this.másRecientesToolStripMenuItem.Click += new System.EventHandler(this.másRecientesToolStripMenuItem_Click);
+            // 
+            // eliminarSeleccionadoEnComboboxToolStripMenuItem
+            // 
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Name = "eliminarSeleccionadoEnComboboxToolStripMenuItem";
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Text = "Eliminar Seleccionado en combobox";
+            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Click += new System.EventHandler(this.eliminarSeleccionadoEnComboboxToolStripMenuItem_Click);
             // 
             // cmbBuscar
             // 
@@ -150,38 +154,12 @@ namespace LaboratorioNo4
             this.webBrowser1.Size = new System.Drawing.Size(1066, 496);
             this.webBrowser1.TabIndex = 3;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(739, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 4;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1132, 164);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 275);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // eliminarSeleccionadoEnComboboxToolStripMenuItem
-            // 
-            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Name = "eliminarSeleccionadoEnComboboxToolStripMenuItem";
-            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Size = new System.Drawing.Size(401, 34);
-            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Text = "Eliminar Seleccionado en combobox";
-            this.eliminarSeleccionadoEnComboboxToolStripMenuItem.Click += new System.EventHandler(this.eliminarSeleccionadoEnComboboxToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1382, 647);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.btnIr);
             this.Controls.Add(this.cmbBuscar);
@@ -191,7 +169,6 @@ namespace LaboratorioNo4
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,8 +188,6 @@ namespace LaboratorioNo4
         private System.Windows.Forms.ComboBox cmbBuscar;
         private System.Windows.Forms.Button btnIr;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem eliminarSeleccionadoEnComboboxToolStripMenuItem;
     }
 }

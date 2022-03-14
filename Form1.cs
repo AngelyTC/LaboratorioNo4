@@ -22,7 +22,7 @@ namespace LaboratorioNo4
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            leer(@"C:\ArchivoLab3.txt");
+            leer("ArchivoLinks.txt");
             cargar();
         }
 
